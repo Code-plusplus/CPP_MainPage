@@ -1,0 +1,52 @@
+<style>
+.glif {
+	color:#fff;
+}
+</style>
+
+<h1>Code++ Github repository</h1><br>
+<ul class="x">
+	<div class="panel panel-primary ">
+			<div class="panel-heading clearfix">
+		      <h4 class="panel-title pull-left" style="padding-top: 7.5px;font-size:25px">Loading</h4>
+		      <div class="btn-group pull-right">
+			<a href="#" class="glif a" target="_blank">    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a>
+			<a href="#" class="glif b" target="_blank">    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> </a>
+		      </div>
+		    </div>
+	  <div class="panel-body">
+	  </div>
+	</div>
+</ul>
+
+
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="/code/media/pure.min.js"></script>
+  <script>
+
+$.getJSON( "https://api.github.com/orgs/Code-plusplus/repos", function( data ) {
+
+function comp(a, b) {
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+}
+
+data.sort(comp);
+
+    var directive = {
+    '.panel-primary':{
+        'animal<-':{
+            '.panel-title': 'animal.name',
+		'.panel-body': 'animal.description',
+		'.b@href':'animal.html_url',
+		'.a@href': function( animal ){ 
+    			    return 'https://api.github.com/repos/Code-plusplus/'+ this.name +'/zipball/master';
+			    }
+        }
+    }
+};
+    //render the template
+    $p( '.x' ).render( data, directive );
+
+});
+  </script>
